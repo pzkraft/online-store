@@ -1,9 +1,9 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext} from 'react';
 import Modal from "react-bootstrap/Modal";
 import {Form, Button, Dropdown} from "react-bootstrap";
 import {Context} from "../../index";
 import { observer } from 'mobx-react-lite';
-import {deleteBrand, fetchBrands} from "../../http/deviceAPI";
+import {deleteBrand, fetchBrands} from "../../http/brandAPI";
 
 const DeleteBrand = observer(({show, onHide}) => {
     const {device} = useContext(Context)

@@ -18,6 +18,14 @@ const DevicePage = () => {
         })
     }
 
+    const addToCart = () => {
+        const formData = new FormData()
+        formData.append('basketId', basket.id)
+        formData.append('deviceId', device.id)
+        addDeviceToCart(formData).then(data => onHide())
+
+    }
+
     return (
         <Container className="mt-3">
             <Row>
@@ -41,7 +49,7 @@ const DevicePage = () => {
                         style={{width: 300, height: 300, fontSize: 32, border: '5px solid lightgray'}}
                     >
                         <h3>От: {device.price} руб.</h3>
-                        <Button variant={"outline-dark"}>Добавить в корзину</Button>
+                        <Button variant={"outline-dark"} onClick={addToCart}>Добавить в корзину</Button>
                     </Card>
                 </Col>
             </Row>
