@@ -5,7 +5,7 @@ class BasketController {
     async addItem(req, res, next) {
         try {
             let {basketId, deviceId} = req.body
-            const item = await BasketDevice.create(basketId, deviceId);
+            const item = await BasketDevice.create({basketId, deviceId});
 
             return res.json(item)
         } catch (e) {

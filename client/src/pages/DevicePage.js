@@ -1,11 +1,14 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {Button, Card, Col, Container, Image, Row} from "react-bootstrap";
 import bigStar from '../assets/bigStar.png'
 import {useParams} from 'react-router-dom'
 import {deleteDevice, fetchOneDevice} from "../http/deviceAPI";
+import { addDeviceToCart } from '../http/basketAPI';
+import {Context} from "../index";
 
 const DevicePage = () => {
     const [device, setDevice] = useState({info: []})
+    const {user} = useContext(Context)
     const {id} = useParams()
     useEffect(() => {
         fetchOneDevice(id).then(data => setDevice(data))
@@ -20,7 +23,7 @@ const DevicePage = () => {
 
     const addToCart = () => {
         const formData = new FormData()
-        formData.append('basketId', basket.id)
+        formData.append('basketId', user.user.id)
         formData.append('deviceId', device.id)
         addDeviceToCart(formData).then(data => onHide())
 
@@ -68,6 +71,7 @@ const DevicePage = () => {
                 onClick={removeDevice}>
                     Delete this device
                 </Button>
+                <div>1111, {user.user.id}, {device.id}</div>
             </Row>
         </Container>
     );
